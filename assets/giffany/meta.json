@@ -1,0 +1,215 @@
+{
+ "w": 458,
+ "h": 500,
+ "px": 3,
+ "density": 2,
+ "sprites": [
+  "neutral",
+  "happy",
+  "excited",
+  "books",
+  "angry",
+  "fist",
+  "sad",
+  "yandere",
+  "smug",
+  "surprised",
+  "thinking",
+  "shy",
+  "wink",
+  "pout",
+  "love",
+  "laugh",
+  "wave",
+  "sly"
+ ],
+ "face": [
+  228,
+  218
+ ],
+ "faceR": 65,
+ "eyeR": 19,
+ "eyes": {
+  "neutral": [
+   [
+    192,
+    206
+   ],
+   [
+    265,
+    206
+   ]
+  ]
+ },
+ "mouth": {
+  "neutral": [
+   229,
+   240,
+   26,
+   10
+  ],
+  "happy": [
+   229,
+   241,
+   35,
+   27
+  ],
+  "excited": [
+   229,
+   242,
+   35,
+   29
+  ],
+  "books": [
+   229,
+   240,
+   26,
+   10
+  ],
+  "angry": [
+   229,
+   244,
+   35,
+   30
+  ],
+  "fist": [
+   227,
+   247,
+   51,
+   40
+  ],
+  "sad": [
+   229,
+   241,
+   31,
+   14
+  ],
+  "yandere": [
+   228,
+   248,
+   54,
+   41
+  ],
+  "smug": [
+   234,
+   236,
+   34,
+   14
+  ],
+  "surprised": [
+   229,
+   242,
+   17,
+   19
+  ],
+  "thinking": [
+   236,
+   232,
+   26,
+   11
+  ],
+  "shy": [
+   228,
+   245,
+   26,
+   10
+  ],
+  "wink": [
+   230,
+   237,
+   29,
+   14
+  ],
+  "pout": [
+   231,
+   239,
+   26,
+   27
+  ],
+  "love": [
+   228,
+   242,
+   30,
+   29
+  ],
+  "laugh": [
+   217,
+   253,
+   59,
+   51
+  ],
+  "wave": [
+   229,
+   242,
+   33,
+   29
+  ],
+  "sly": [
+   231,
+   240,
+   26,
+   10
+  ]
+ },
+ "flags": {
+  "happy": {
+   "closedEyes": true,
+   "openMouth": true
+  },
+  "yandere": {
+   "creepy": true,
+   "openMouth": true,
+   "noLipSync": true
+  },
+  "excited": {
+   "openMouth": true
+  },
+  "angry": {
+   "openMouth": true
+  },
+  "fist": {
+   "openMouth": true,
+   "noLipSync": true
+  },
+  "smug": {
+   "noEyeFx": true
+  },
+  "sly": {
+   "noEyeFx": true
+  },
+  "wink": {
+   "noEyeFx": true,
+   "openMouth": true
+  },
+  "laugh": {
+   "closedEyes": true,
+   "openMouth": true,
+   "noLipSync": true
+  },
+  "love": {
+   "noEyeFx": true,
+   "openMouth": true
+  },
+  "wave": {
+   "openMouth": true
+  },
+  "pout": {
+   "noLipSync": true
+  }
+ },
+ "skin": "#fdbb9a",
+ "outline": "#4a1a3a",
+ "mouthColor": "#a8284a",
+ "eyeRX": 20,
+ "eyeRY": 15,
+ "irisR": 10,
+ "mouthInk": "#4a1a3a",
+ "mouthInside": "#b8285a",
+ "tongue": "#ff7fa6",
+ "hairPad": 0,
+ "blinkFrames": [
+  "blink_half",
+  "blink_closed"
+ ],
+ "blinkMask": true
+}

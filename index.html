@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Romance Academy 7 — фан-игра</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Tiny5&family=Rubik+Dirt&family=Neucha&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="stage" class="mode-menu crt-on">
+    <div id="world">
+      <video id="menu-video" muted loop playsinline preload="auto" aria-hidden="true"></video>
+      <img class="room room-blur" src="assets/room.jpg" alt="" draggable="false">
+      <img class="room desk-img" alt="Рабочий стол Суса" draggable="false">
+      <img class="room room-sharp" src="assets/room.jpg" alt="Комната Суса ночью" draggable="false">
+      <canvas id="ambient" width="960" height="540"></canvas>
+      <div id="hotspots"></div>
+      <div id="screen-clip">
+        <div id="screen">
+          <canvas id="game" width="640" height="480"></canvas>
+          <canvas id="noise" width="160" height="120"></canvas>
+          <div class="crt-scan"></div>
+          <div class="crt-glass"></div>
+          <div class="vhs-bar"></div>
+          <div class="vhs-osd"><span class="osd-play">▶ PLAY</span><span class="osd-time"></span></div>
+          <div class="monitor-hint"></div>
+          <div id="static-flash"></div>
+        </div>
+      </div>
+      <canvas id="fx-burst" width="960" height="540"></canvas>
+      <div id="bubble" class="hidden"></div>
+    </div>
+    <nav id="menu-panel" aria-label="Главное меню">
+      <div class="logo">
+        <div class="logo-jp">ロマンスアカデミー<b>7</b></div>
+        <h1 class="logo-main"></h1>
+        <p class="logo-sub"></p>
+      </div>
+      <div class="menu-items"></div>
+      <div class="menu-foot">
+        <div class="lang-switch"><button data-lang="ru">RU</button><button data-lang="en">EN</button></div>
+        <p class="disclaimer"></p>
+      </div>
+    </nav>
+    <div id="modal" class="hidden" role="dialog" aria-modal="true"><div class="modal-box"></div></div>
+    <div id="toasts" aria-live="polite"></div>
+  </main>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

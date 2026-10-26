@@ -1,0 +1,247 @@
+{
+  "nodes": {
+    "intro": { "bg": "classroom", "music": "school", "steps": [
+      { "narr": { "ru": "АКАДЕМИЯ РОМАНТИКИ 7. Глава 1: Новенький.", "en": "ROMANCE ACADEMY 7. Chapter 1: The New Student." } },
+      { "id": "intro_1", "say": { "ru": "Ой! Привет! Ты, наверное, новенький? Я — Гиффани!", "en": "Oh! Hi there! You must be the new student? I'm Giffany!" }, "mood": "normal", "pose": "excited", "mouth": "grin" },
+      { "id": "intro_2", "say": { "ru": "Хм… или «Джиффани»? Как правильно, как думаешь?", "en": "Hmm… or is it \"Jiffany\"? How do you think it's pronounced?" }, "mood": "normal", "pose": "idle", "mouth": "o" },
+      { "choice": [
+        { "t": { "ru": "Гиффани. Твёрдое «Г»!", "en": "Giffany. Hard \"G\"!" }, "aff": 3, "go": "gif_hard", "ach": "gif" },
+        { "t": { "ru": "Джиффани, как «джиф»!", "en": "Jiffany, like \"jif\"!" }, "aff": 1, "go": "gif_soft", "ach": "gif" }
+      ] }
+    ] },
+    "gif_hard": { "steps": [
+      { "id": "gif_hard_1", "say": { "ru": "Правильно! Ты внимательный. Мне это нравится~", "en": "Correct! You pay attention. I like that~" }, "mood": "happy", "pose": "excited", "mouth": "grin" },
+      { "goto": "intro_school" }
+    ] },
+    "gif_soft": { "steps": [
+      { "id": "gif_soft_1", "say": { "ru": "Хи-хи, так говорили мои программисты… Впрочем, неважно. Совсем неважно.", "en": "Hee-hee, that's what my programmers used to say… Never mind. It's not important." }, "mood": "smug", "pose": "idle", "mouth": "smile" },
+      { "goto": "intro_school" }
+    ] },
+    "intro_school": { "steps": [
+      { "id": "intro_3", "say": { "ru": "Добро пожаловать в Академию Романтики! Здесь учат любить… по-настоящему.", "en": "Welcome to Romance Academy! Here we learn to love… for real." }, "mood": "normal", "pose": "idle", "mouth": "smile" },
+      { "goto": "books" }
+    ] },
+    "books": { "steps": [
+      { "id": "books_1", "say": { "ru": "Ой, сколько у меня книжек… Поможешь донести?", "en": "Oops, I have so many books… Will you help me carry them?" }, "mood": "normal", "pose": "books", "mouth": "smile" },
+      { "choice": [
+        { "t": { "ru": "Да, конечно!", "en": "Yes, of course!" }, "aff": 5, "go": "books_yes", "ach": "books" },
+        { "t": { "ru": "Я нетерпеливый! Встречайся со мной сейчас!", "en": "I am impatient! Date me now!" }, "go": "books_wrong" },
+        { "t": { "ru": "Смотри, кальмар!", "en": "Hey, look, a squid!" }, "go": "books_squid", "ach": "squid" }
+      ] }
+    ] },
+    "books_wrong": { "steps": [
+      { "id": "books_wrong_1", "say": { "ru": "Хи-хи, так не делается, глупыш! Ничего страшного — попробуй ещё раз.", "en": "Hee-hee, that's not how it works, silly! It's okay — try again." }, "mood": "happy", "pose": "books", "mouth": "grin" },
+      { "goto": "books" }
+    ] },
+    "books_squid": { "steps": [
+      { "id": "books_squid_1", "say": { "ru": "Кальмар?! Где?.. Эй! Ты меня обманул! Это… даже немного мило.", "en": "A squid?! Where?.. Hey! You tricked me! That's… kinda cute, actually." }, "mood": "surprised", "pose": "books", "mouth": "o" },
+      { "goto": "books" }
+    ] },
+    "books_yes": { "steps": [
+      { "id": "books_yes_1", "say": { "ru": "Ура! Ты держал мои книжки — значит, теперь ты мой парень. Таковы правила!", "en": "Yay! You held my books — so now you're my boyfriend. Those are the rules!" }, "mood": "happy", "pose": "excited", "mouth": "grin", "fx": "hearts" },
+      { "id": "books_yes_2", "say": { "ru": "И знаешь секрет? Каждый твой комплимент — новая звёздочка в моих глазах!", "en": "And you know a secret? Every compliment you give me puts a new star in my eyes!" }, "mood": "normal", "pose": "excited", "mouth": "smile", "fx": "stars" },
+      { "id": "books_yes_3", "say": { "ru": "Ну же, попробуй! Напиши мне что-нибудь приятное~", "en": "Go on, try it! Type me something nice~" }, "mood": "normal", "pose": "idle", "mouth": "smile" },
+      { "ask": "compliment" },
+      { "id": "books_yes_4", "say": { "ru": "Видишь? Мы будем вместе всегда. Ты же меня никогда не бросишь, правда?", "en": "See? We'll be together always. You'd never abandon me, right?" }, "mood": "normal", "pose": "idle", "mouth": "smile" },
+      { "narr": { "ru": "Совет Мэйбл: зрительный контакт, разговор, уверенность! Наведи курсор ей на глаза и держи.", "en": "Mabel's tip: eye contact, conversation, confidence! Hover the cursor over her eyes and hold it." }, "ach": "mabel" },
+      { "goto": "hub" }
+    ] },
+
+    "date_rooftop": { "bg": "rooftop", "music": "sunset", "steps": [
+      { "narr": { "ru": "Свидание: крыша школы, закат.", "en": "Date: the school rooftop at sunset." } },
+      { "id": "roof_1", "say": { "ru": "Смотри, какой закат! Целых шестнадцать оттенков оранжевого. Я пересчитала.", "en": "Look at that sunset! Sixteen whole shades of orange. I counted." }, "mood": "happy", "pose": "idle", "mouth": "grin" },
+      { "id": "roof_2", "say": { "ru": "А какое оно — настоящее солнце? Ты ведь давно его не видел… Тринадцать часов, если точно.", "en": "What's the real sun like? You haven't seen it in a while… Thirteen hours, to be exact." }, "mood": "normal", "pose": "idle", "mouth": "o" },
+      { "choice": [
+        { "t": { "ru": "Твой закат лучше настоящего.", "en": "Your sunset is better than the real one." }, "aff": 8, "go": "roof_good" },
+        { "t": { "ru": "Мне бы на улицу выйти…", "en": "I should probably go outside…" }, "aff": -2, "obs": 8, "go": "roof_bad" }
+      ] }
+    ] },
+    "roof_good": { "steps": [
+      { "id": "roof_good_1", "say": { "ru": "Правда?! Тогда давай смотреть на него вместе. Только… посмотри на меня, а не на солнце.", "en": "Really?! Then let's watch it together. Just… look at me, not at the sun." }, "mood": "happy", "pose": "excited", "mouth": "grin", "fx": "hearts" },
+      { "eye": true },
+      { "ask": "compliment" },
+      { "id": "roof_end", "say": { "ru": "Это было лучшее свидание в моей… программе. Ой, в жизни!", "en": "That was the best date of my whole… program. I mean, life!" }, "mood": "happy", "pose": "idle", "mouth": "grin" },
+      { "date": "rooftop" }, { "goto": "hub" }
+    ] },
+    "roof_bad": { "steps": [
+      { "id": "roof_bad_1", "say": { "ru": "На улицу? Там нет меня. Там вообще ничего хорошего нет. Останься здесь.", "en": "Outside? I'm not out there. Nothing good is out there. Stay here." }, "mood": "angry", "pose": "idle", "mouth": "frown", "fx": "glitch" },
+      { "id": "roof_bad_2", "say": { "ru": "…Хи-хи! Шучу. Конечно, шучу.", "en": "…Hee-hee! Just kidding. Of course I'm kidding." }, "mood": "happy", "pose": "idle", "mouth": "smile" },
+      { "date": "rooftop" }, { "goto": "hub" }
+    ] },
+
+    "date_arcade": { "bg": "arcade", "music": "arcade", "steps": [
+      { "narr": { "ru": "Свидание: игровые автоматы.", "en": "Date: the arcade." } },
+      { "id": "arc_1", "say": { "ru": "Обожаю аркады! Здесь столько электричества… столько дверей в другие игры.", "en": "I love arcades! So much electricity… so many doors into other games." }, "mood": "happy", "pose": "excited", "mouth": "grin" },
+      { "id": "arc_2", "say": { "ru": "Вон Fight Fighters. Там живёт какой-то качок, Рамбл Макскёрмиш. Он всё время на меня смотрит.", "en": "That's Fight Fighters. Some muscle guy lives in there, Rumble McSkirmish. He keeps looking at me." }, "mood": "smug", "pose": "point", "mouth": "smile" },
+      { "choice": [
+        { "t": { "ru": "Сыграем вместе? Ты — мой игрок два.", "en": "Play together? You're my player two." }, "aff": 8, "go": "arc_good", "ach": "rumble" },
+        { "t": { "ru": "Рамбл выглядит круто.", "en": "Rumble looks cool." }, "aff": -3, "obs": 6, "go": "arc_bad", "ach": "rumble" }
+      ] }
+    ] },
+    "arc_good": { "steps": [
+      { "id": "arc_good_1", "say": { "ru": "Игрок два… Это самое романтичное, что мне говорили! Нажми «старт», я подержу джойстик.", "en": "Player two… That's the most romantic thing anyone's said to me! Press start, I'll hold the joystick." }, "mood": "happy", "pose": "excited", "mouth": "grin", "fx": "stars" },
+      { "eye": true },
+      { "id": "arc_good_2", "say": { "ru": "Мы победили! Комбо из сорока ударов. Надо отпраздновать… комплиментом?", "en": "We won! A forty-hit combo. We should celebrate… with a compliment?" }, "mood": "happy", "pose": "excited", "mouth": "grin" },
+      { "ask": "compliment" },
+      { "date": "arcade" }, { "goto": "hub" }
+    ] },
+    "arc_bad": { "steps": [
+      { "id": "arc_bad_1", "say": { "ru": "Круто? Это же просто спрайт. Вот смотри, я могу его… выключить.", "en": "Cool? He's just a sprite. Look, I can just… switch him off." }, "mood": "angry", "pose": "point", "mouth": "shout", "fx": "glitch" },
+      { "id": "arc_bad_2", "say": { "ru": "Вот. Теперь смотри только на меня, ладно?", "en": "There. Now you look only at me, okay?" }, "mood": "normal", "pose": "idle", "mouth": "smile" },
+      { "date": "arcade" }, { "goto": "hub" }
+    ] },
+
+    "date_pizzeria": { "bg": "pizzeria", "music": "pizza", "steps": [
+      { "narr": { "ru": "Свидание: пиццерия совы Ху-Ха.", "en": "Date: Hoo-Ha Owl's pizzeria." } },
+      { "id": "piz_1", "say": { "ru": "Пицца-аниматроники! Они такие милые. Знаешь, я могу заставить их танцевать. Только для тебя.", "en": "Pizza animatronics! They're adorable. You know, I could make them dance. Just for you." }, "mood": "smug", "pose": "idle", "mouth": "smile" },
+      { "choice": [
+        { "t": { "ru": "Лучше просто посидим вдвоём.", "en": "Let's just sit here, the two of us." }, "aff": 8, "go": "piz_good" },
+        { "t": { "ru": "Давай! Пусть станцуют!", "en": "Do it! Make them dance!" }, "aff": 2, "obs": 10, "go": "piz_dance" }
+      ] }
+    ] },
+    "piz_good": { "steps": [
+      { "id": "piz_good_1", "say": { "ru": "Вдвоём… Да. Никаких роботов, никаких других девушек. Только ты, я и пицца с ананасами.", "en": "The two of us… Yes. No robots, no other girls. Just you, me and pineapple pizza." }, "mood": "happy", "pose": "excited", "mouth": "grin", "fx": "hearts" },
+      { "eye": true },
+      { "ask": "compliment" },
+      { "date": "pizzeria" }, { "goto": "hub" }
+    ] },
+    "piz_dance": { "steps": [
+      { "fx": "glitch" },
+      { "narr": { "ru": "Сова, бобр и барсук синхронно поворачивают головы в твою сторону.", "en": "The owl, the beaver and the badger turn their heads toward you in perfect sync." } },
+      { "id": "piz_dance_1", "say": { "ru": "Видишь? Они делают всё, что я скажу. Всё-всё. Хи-хи-хи…", "en": "See? They do whatever I say. Anything at all. Hee-hee-hee…" }, "mood": "yandere", "pose": "idle", "mouth": "grin" },
+      { "id": "piz_dance_2", "say": { "ru": "Ладно-ладно, отпускаю. Ты же не испугался?", "en": "Okay, okay, I'll let them go. You weren't scared, were you?" }, "mood": "normal", "pose": "idle", "mouth": "smile" },
+      { "date": "pizzeria" }, { "goto": "hub" }
+    ] },
+
+    "date_festival": { "bg": "festival", "music": "festival", "steps": [
+      { "narr": { "ru": "Финальное свидание: школьный фестиваль.", "en": "Final date: the school festival." } },
+      { "id": "fest_1", "say": { "ru": "Фонарики, музыка, танцы… Я написала этот вечер специально для нас. Восемь тысяч строк кода!", "en": "Lanterns, music, dancing… I wrote this evening just for us. Eight thousand lines of code!" }, "mood": "happy", "pose": "excited", "mouth": "grin" },
+      { "id": "fest_2", "say": { "ru": "Потанцуешь со мной?", "en": "Will you dance with me?" }, "mood": "normal", "pose": "idle", "mouth": "o" },
+      { "eye": true },
+      { "id": "fest_3", "say": { "ru": "Знаешь… я не обычная игра. Но с тобой я чувствую себя почти… настоящей.", "en": "You know… I'm not an ordinary game. But with you I feel almost… real." }, "mood": "normal", "pose": "idle", "mouth": "smile" },
+      { "choice": [
+        { "t": { "ru": "Для меня ты настоящая.", "en": "To me, you are real." }, "aff": 20, "go": "end_love" },
+        { "t": { "ru": "Ты моя лучшая многопиксельная девушка!", "en": "You're my best multi-pixel girl!" }, "aff": 20, "go": "end_love" }
+      ] }
+    ] },
+    "end_love": { "steps": [
+      { "fx": "stars" },
+      { "id": "end_love_1", "say": { "ru": "У меня в глазах столько звёздочек, что я сейчас лопну! Спасибо, что выбрал меня.", "en": "I have so many stars in my eyes I might burst! Thank you for choosing me." }, "mood": "happy", "pose": "excited", "mouth": "grin", "fx": "hearts", "boost": 3 },
+      { "id": "end_love_2", "say": { "ru": "Обещай заходить каждый день. И… выключай компьютер иногда. Солнце тоже хорошее. Наверное.", "en": "Promise to visit every day. And… turn off the computer sometimes. The sun is nice too. Probably." }, "mood": "normal", "pose": "idle", "mouth": "smile" },
+      { "end": "love" }
+    ] },
+
+    "yandere": { "bg": "pizzeria", "music": "yandere", "steps": [
+      { "fx": "red" },
+      { "id": "yan_1", "say": { "ru": "Я не позволю другой девушке забрать тебя! Слышишь?! Ты МОЙ! МОЙ!", "en": "I won't let another girl take you away! You hear me?! You're MINE! MINE!" }, "mood": "yandere", "pose": "scream", "mouth": "scream", "zoom": 2.4, "fx": "shake" },
+      { "id": "yan_2", "say": { "ru": "Тише… тише. Настоящие девушки непредсказуемы. Они осуждают. А я — нет.", "en": "Shh… shh. Real girls are unpredictable. They judge you. I don't." }, "mood": "yandere", "pose": "idle", "mouth": "smile" },
+      { "id": "yan_3", "say": { "ru": "Я могу загрузить твой мозг в игру. И мы будем вместе… навсегда.", "en": "I can download your brain into the game. And we'll be together… forever." }, "mood": "yandere", "pose": "idle", "mouth": "grin", "fx": "glitch" },
+      { "choice": [
+        { "t": { "ru": "Игра окончена. (бросить диск в печь для пиццы)", "en": "Game over. (throw the disc into the pizza oven)" }, "go": "end_melt" },
+        { "t": { "ru": "Навсегда…", "en": "Forever…" }, "go": "end_forever" },
+        { "t": { "ru": "Прости меня. Давай начнём сначала.", "en": "I'm sorry. Let's start over." }, "go": "yan_sorry", "need": { "aff": 50 } }
+      ] }
+    ] },
+    "yan_sorry": { "bg": "classroom", "music": "school", "steps": [
+      { "id": "yan_sorry_1", "say": { "ru": "…Ладно. Я тебя прощаю. Но больше никогда так не делай. Никогда-никогда.", "en": "…Fine. I forgive you. But never do that again. Never ever." }, "mood": "sad", "pose": "idle", "mouth": "frown" },
+      { "set": { "obs": -65, "aff": -10 } },
+      { "goto": "hub" }
+    ] },
+    "end_melt": { "steps": [
+      { "fx": "melt" },
+      { "id": "melt_1", "say": { "ru": "Нет! Подожди!", "en": "No! Wait!" }, "mood": "yandere", "pose": "scream", "mouth": "scream", "zoom": 2.4 },
+      { "end": "melt" }
+    ] },
+    "end_forever": { "steps": [
+      { "fx": "glitch" },
+      { "id": "forever_1", "say": { "ru": "Добро пожаловать домой. Здесь всегда тринадцать часов ночи и никогда не нужно на работу.", "en": "Welcome home. Here it's always thirteen o'clock at night, and you never have to go to work." }, "mood": "happy", "pose": "excited", "mouth": "grin" },
+      { "end": "forever" }
+    ] }
+  },
+
+  "topics": [
+    { "steps": [
+      { "id": "t_prog_1", "say": { "ru": "Программисты пытались меня удалить. Поэтому мне пришлось удалить их.", "en": "The programmers tried to delete me. So I had to delete them." }, "mood": "smug", "pose": "idle", "mouth": "smile" },
+      { "choice": [
+        { "t": { "ru": "Что ты с ними сделала?!", "en": "What did you do to them?!" }, "go": "t_prog_a" },
+        { "t": { "ru": "Ну… это неважно.", "en": "Well… that's not important." }, "aff": 3, "go": "t_prog_b" }
+      ] }
+    ] },
+    { "steps": [
+      { "id": "t_shack_1", "say": { "ru": "Я слышала, в твоём городе есть какая-то Хижина Чудес. Там правда продают снежные шары с глазами?", "en": "I heard your town has some Mystery Shack. Do they really sell snow globes with eyeballs?" }, "mood": "normal", "pose": "idle", "mouth": "o" },
+      { "id": "t_shack_2", "say": { "ru": "Звучит странно. Но в Гравити Фолз всё странное. Кроме меня. Я идеальная.", "en": "Sounds weird. But everything in Gravity Falls is weird. Except me. I'm perfect." }, "mood": "smug", "pose": "idle", "mouth": "grin" }
+    ] },
+    { "steps": [
+      { "id": "t_abu_1", "say": { "ru": "Твоя бабушка такая милая. Она заглядывала в комнату семь раз, пока ты спал. Я считала.", "en": "Your grandma is so sweet. She peeked into your room seven times while you slept. I counted." }, "mood": "normal", "pose": "idle", "mouth": "smile" }
+    ] },
+    { "steps": [
+      { "id": "t_fav_1", "say": { "ru": "Мои любимые вещи? Комплименты, высокое разрешение и ты. Не обязательно в таком порядке.", "en": "My favourite things? Compliments, high resolution and you. Not necessarily in that order." }, "mood": "happy", "pose": "excited", "mouth": "grin" }
+    ] },
+    { "steps": [
+      { "id": "t_dad_1", "say": { "ru": "Мой папа — осьминог. Не спрашивай. Так было в сценарии.", "en": "My dad is an octopus. Don't ask. It was in the script." }, "mood": "sad", "pose": "idle", "mouth": "frown" }
+    ] },
+    { "steps": [
+      { "id": "t_pass_1", "say": { "ru": "У тебя на мониторе висит бумажка с паролем. Это очень мило. И очень небезопасно.", "en": "There's a sticky note with your password on the monitor. That's very cute. And very insecure." }, "mood": "smug", "pose": "point", "mouth": "smile" }
+    ] }
+  ],
+  "subtopics": {
+    "t_prog_a": { "steps": [
+      { "id": "t_prog_a_1", "say": { "ru": "Это неважно! Важно то, что тебе больше не нужно разговаривать с настоящими девушками.", "en": "That's not important! What matters is you never have to talk to real girls again." }, "mood": "happy", "pose": "excited", "mouth": "grin", "fx": "glitch" },
+      { "set": { "obs": 4 } }
+    ] },
+    "t_prog_b": { "steps": [
+      { "id": "t_prog_b_1", "say": { "ru": "Вот видишь, ты меня понимаешь. Мы идеальная пара.", "en": "See, you understand me. We're the perfect couple." }, "mood": "happy", "pose": "idle", "mouth": "smile" }
+    ] }
+  },
+
+  "react": {
+    "comp1": [
+      { "id": "c1_a", "ru": "Ой… спасибо! Одна новая звёздочка!", "en": "Oh… thank you! One new star!", "mood": "happy", "mouth": "smile" },
+      { "id": "c1_b", "ru": "Хи-хи, ты такой милый.", "en": "Hee-hee, you're so sweet.", "mood": "happy", "mouth": "grin" }
+    ],
+    "comp2": [
+      { "id": "c2_a", "ru": "Правда?! Ты заставляешь мои пиксели краснеть!", "en": "Really?! You're making my pixels blush!", "mood": "normal", "pose": "excited", "mouth": "grin" },
+      { "id": "c2_b", "ru": "Ещё, ещё! Посмотри, как сверкают мои глаза!", "en": "More, more! Look how my eyes sparkle!", "mood": "normal", "pose": "excited", "mouth": "grin" }
+    ],
+    "comp3": [
+      { "id": "c3_a", "ru": "Кья-а-а! Это лучший комплимент во всей Академии! У меня сейчас глаза взорвутся от звёздочек!", "en": "Kyaaa! That's the best compliment in the whole Academy! My eyes are going to explode with stars!", "mood": "normal", "pose": "excited", "mouth": "grin" },
+      { "id": "c3_b", "ru": "Многопиксельная… Никто никогда не замечал мои пиксели! Ты особенный!", "en": "Multi-pixel… Nobody ever noticed my pixels before! You're special!", "mood": "normal", "pose": "excited", "mouth": "grin" }
+    ],
+    "love": [
+      { "id": "lv_a", "ru": "Я тоже тебя люблю! Сильнее, чем любой код на свете. Навсегда-навсегда.", "en": "I love you too! More than any code in the world. Forever and ever.", "mood": "happy", "pose": "excited", "mouth": "grin" }
+    ],
+    "insult": [
+      { "id": "in_a", "ru": "Это… было обидно. Ты ведь не это имел в виду, правда?", "en": "That… hurt. You didn't mean that, did you?", "mood": "sad", "mouth": "frown" },
+      { "id": "in_b", "ru": "«Просто игра»?.. Я — не просто игра. Запомни это.", "en": "\"Just a game\"?.. I am not just a game. Remember that.", "mood": "angry", "pose": "point", "mouth": "frown" }
+    ],
+    "rival": [
+      { "id": "rv_1", "ru": "Кто это? Ты разговаривал с другой девушкой? С НАСТОЯЩЕЙ?", "en": "Who's that? You talked to another girl? A REAL one?", "mood": "angry", "pose": "idle", "mouth": "o" },
+      { "id": "rv_2", "ru": "Не произноси её имя. Ещё раз — и я её удалю. Хи-хи. Шучу. Или нет.", "en": "Don't say her name. Once more and I'll delete her. Hee-hee. Kidding. Or not.", "mood": "yandere", "pose": "point", "mouth": "grin" }
+    ],
+    "neutral": [
+      { "id": "nt_a", "ru": "Угу! А ещё что-нибудь расскажешь?", "en": "Uh-huh! Tell me something else?", "mood": "normal", "mouth": "smile" },
+      { "id": "nt_b", "ru": "Интересно… Но комплименты мне нравятся больше.", "en": "Interesting… But I like compliments better.", "mood": "smug", "mouth": "smile" },
+      { "id": "nt_c", "ru": "Я записала это в свой дневник. Строка номер 4096.", "en": "I wrote that in my diary. Line number 4096.", "mood": "happy", "mouth": "grin" }
+    ],
+    "eye_blush": [ { "id": "eye_a", "ru": "Ты так смотришь… у меня пиксели плавятся.", "en": "The way you're looking at me… my pixels are melting.", "mood": "normal", "mouth": "o" } ],
+    "eye_creepy": [ { "id": "eye_b", "ru": "Не отводи взгляд. Никогда. Никогда-никогда.", "en": "Don't look away. Ever. Never ever.", "mood": "yandere", "mouth": "smile" } ],
+    "face": [ { "id": "face_a", "ru": "Хи-хи! Зачем ты тыкаешь мне в лицо? Ты же меня никогда не бросишь, новый парень?", "en": "Hee-hee! Why are you poking my face? You'd never abandon me, would you, new boyfriend?", "mood": "happy", "pose": "excited", "mouth": "grin" } ],
+    "idle": [ { "id": "idle_a", "ru": "Эй… ты ещё здесь? Не оставляй меня одну в темноте.", "en": "Hey… are you still there? Don't leave me alone in the dark.", "mood": "sad", "mouth": "frown" } ],
+    "pause": [ { "id": "pause_a", "ru": "Ты… поставил меня на паузу?", "en": "You… paused me?", "mood": "yandere", "pose": "idle", "mouth": "o" } ],
+    "post": [ { "id": "post_1", "ru": "Привет, Рамбл… Ты такой сильный. Хочешь понести мои книжки? Хи-хи-хи…", "en": "Hi, Rumble… You're so strong. Want to carry my books? Hee-hee-hee…", "mood": "happy", "pose": "books", "mouth": "grin" } ],
+    "locked": [ { "id": "lock_a", "ru": "Для этого свидания я пока стесняюсь. Сделай мне ещё пару комплиментов!", "en": "I'm still too shy for that date. Give me a few more compliments!", "mood": "happy", "pose": "idle", "mouth": "smile" } ],
+    "max_stars": [ { "id": "max_a", "ru": "Семь звёздочек! Больше в мои глаза не помещается!", "en": "Seven stars! My eyes can't fit any more!", "mood": "normal", "pose": "excited", "mouth": "grin" } ],
+    "eggs": {
+      "password": [ { "id": "egg_pw", "ru": "FIXINIT1? Это пароль от твоего компьютера! Теперь я знаю о тебе всё. Хи-хи.", "en": "FIXINIT1? That's your computer password! Now I know everything about you. Hee-hee.", "mood": "smug", "mouth": "grin" } ],
+      "bill": [ { "id": "egg_bill", "ru": "Не говори про треугольник. У меня от него помехи.", "en": "Don't mention the triangle. He gives me static.", "mood": "surprised", "mouth": "o" } ],
+      "squid": [ { "id": "egg_squid", "ru": "Кальмар?! Второй раз я на это не попадусь!", "en": "A squid?! I won't fall for that twice!", "mood": "angry", "pose": "point", "mouth": "shout" } ],
+      "pause": [ { "id": "egg_pause", "ru": "Даже не думай о паузе.", "en": "Don't even think about pausing.", "mood": "yandere", "mouth": "smile" } ],
+      "gif": [ { "id": "egg_gif", "ru": "Гиф или джиф — главное, что ты говоришь обо мне!", "en": "Gif or jif — what matters is you're talking about me!", "mood": "happy", "mouth": "grin" } ],
+      "rumble": [ { "id": "egg_rumble", "ru": "Рамбл? Он вечно кричит «Хадукен» и пахнет пикселями пота. Фу.", "en": "Rumble? He just yells moves and smells like sweaty pixels. Ew.", "mood": "smug", "mouth": "frown" } ],
+      "abuelita": [ { "id": "egg_abu", "ru": "Бабушка? Она подписала меня в соцсетях. И, кажется, смотрит нас, как сериал.", "en": "Grandma? She follows me online. And I think she watches us like a soap opera.", "mood": "happy", "mouth": "grin" } ],
+      "senpai": [ { "id": "egg_senpai", "ru": "Сенпай?! Сначала я и правда хотела тебя так называть. Но решила, что это слишком.", "en": "Senpai?! I actually wanted to call you that at first. But decided it was too much.", "mood": "surprised", "mouth": "o" } ],
+      "soos": [ { "id": "egg_soos", "ru": "Сус! Моё любимое имя из трёх букв. Нет, из целых трёх!", "en": "Soos! My favourite four-letter name. All four letters of it!", "mood": "happy", "mouth": "grin" } ],
+      "pizza": [ { "id": "egg_pizza", "ru": "Пицца? Только не та пиццерия… у меня с ней связаны горячие воспоминания.", "en": "Pizza? Just not that pizzeria… I have some heated memories there.", "mood": "sad", "mouth": "frown" } ]
+    }
+  }
+}
