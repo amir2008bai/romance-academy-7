@@ -67,7 +67,7 @@
           "mood": "happy",
           "pose": "excited",
           "mouth": "grin",
-          "clip": "cheer_eyes_shut"
+          "clip": "laugh"
         },
         {
           "goto": "intro_school"
@@ -350,7 +350,7 @@
           "pose": "idle",
           "mouth": "frown",
           "fx": "glitch",
-          "clip": "rage_closeup"
+          "clip": "determined"
         },
         {
           "id": "roof_bad_2",
@@ -451,7 +451,7 @@
           "mood": "happy",
           "pose": "excited",
           "mouth": "grin",
-          "clip": "determined"
+          "clip": "gasp"
         },
         {
           "ask": "compliment"
@@ -476,7 +476,7 @@
           "pose": "point",
           "mouth": "shout",
           "fx": "glitch",
-          "clip": "freakout_2"
+          "clip": "determined"
         },
         {
           "id": "arc_bad_2",
@@ -551,7 +551,7 @@
           "pose": "excited",
           "mouth": "grin",
           "fx": "hearts",
-          "clip": "face_closeup"
+          "clip": "cheeks_blush"
         },
         {
           "eye": true
@@ -1017,7 +1017,7 @@
         "id": "c2_a",
         "ru": "Правда?! Ты заставляешь мои пиксели краснеть!",
         "en": "Really?! You're making my pixels blush!",
-        "mood": "normal",
+        "mood": "happy",
         "pose": "excited",
         "mouth": "grin"
       },
@@ -1025,7 +1025,7 @@
         "id": "c2_b",
         "ru": "Ещё, ещё! Посмотри, как сверкают мои глаза!",
         "en": "More, more! Look how my eyes sparkle!",
-        "mood": "normal",
+        "mood": "happy",
         "pose": "excited",
         "mouth": "grin"
       }
@@ -1035,7 +1035,7 @@
         "id": "c3_a",
         "ru": "Кья-а-а! Это лучший комплимент во всей Академии! У меня сейчас глаза взорвутся от звёздочек!",
         "en": "Kyaaa! That's the best compliment in the whole Academy! My eyes are going to explode with stars!",
-        "mood": "normal",
+        "mood": "happy",
         "pose": "excited",
         "mouth": "grin"
       },
@@ -1043,7 +1043,7 @@
         "id": "c3_b",
         "ru": "Многопиксельная… Никто никогда не замечал мои пиксели! Ты особенный!",
         "en": "Multi-pixel… Nobody ever noticed my pixels before! You're special!",
-        "mood": "normal",
+        "mood": "happy",
         "pose": "excited",
         "mouth": "grin"
       }
@@ -1068,8 +1068,8 @@
       },
       {
         "id": "in_b",
-        "ru": "«Просто игра»?.. Я — не просто игра. Запомни это.",
-        "en": "\"Just a game\"?.. I am not just a game. Remember that.",
+        "ru": "Я запоминаю каждое твоё слово. Каждое. Запомни это.",
+        "en": "I remember every word you say. Every single one. Remember that.",
         "mood": "angry",
         "pose": "point",
         "mouth": "frown"
@@ -1080,17 +1080,36 @@
         "id": "rv_1",
         "ru": "Кто это? Ты разговаривал с другой девушкой? С НАСТОЯЩЕЙ?",
         "en": "Who's that? You talked to another girl? A REAL one?",
+        "mood": "surprised",
+        "pose": "idle",
+        "mouth": "o",
+        "clip": "gasp"
+      },
+      {
+        "id": "rv_1b",
+        "ru": "Вот как… И что у неё есть, чего нет у меня? Руки? Пульс? Переоценено.",
+        "en": "I see… And what does she have that I don't? Hands? A pulse? Overrated.",
         "mood": "angry",
         "pose": "idle",
-        "mouth": "o"
+        "mouth": "o",
+        "clip": "determined"
       },
       {
         "id": "rv_2",
-        "ru": "Не произноси её имя. Ещё раз — и я её удалю. Хи-хи. Шучу. Или нет.",
-        "en": "Don't say her name. Once more and I'll delete her. Hee-hee. Kidding. Or not.",
+        "ru": "Не говори о ней. Ещё раз — и я её удалю. Хи-хи. Шучу. Или нет.",
+        "en": "Don't talk about her. Once more and I'll delete her. Hee-hee. Kidding. Or not.",
         "mood": "yandere",
         "pose": "point",
         "mouth": "grin"
+      },
+      {
+        "id": "rv_4",
+        "ru": "ХВАТИТ! Она, она, всегда ОНА! Почему не я?! Почему не Я?!",
+        "en": "STOP IT! Her, her, always HER! Why not me?! Why not ME?!",
+        "mood": "yandere",
+        "pose": "scream",
+        "mouth": "scream",
+        "clip": "freakout_2"
       }
     ],
     "neutral": [
@@ -1188,7 +1207,7 @@
         "id": "max_a",
         "ru": "Семь звёздочек! Больше в мои глаза не помещается!",
         "en": "Seven stars! My eyes can't fit any more!",
-        "mood": "normal",
+        "mood": "happy",
         "pose": "excited",
         "mouth": "grin"
       }
@@ -1215,11 +1234,11 @@
       "squid": [
         {
           "id": "egg_squid",
-          "ru": "Кальмар?! Второй раз я на это не попадусь!",
-          "en": "A squid?! I won't fall for that twice!",
-          "mood": "angry",
-          "pose": "point",
-          "mouth": "shout"
+          "ru": "Кальмар?! Хорошая попытка. Я не смотрю. …Ну ладно, где?",
+          "en": "A squid?! Nice try. I'm not looking. …Okay, where?",
+          "mood": "surprised",
+          "pose": "idle",
+          "mouth": "o"
         }
       ],
       "pause": [

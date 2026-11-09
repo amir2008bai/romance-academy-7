@@ -20,6 +20,13 @@ const CRYPTO = {
   forever: { ru: () => atbash('ТЫ НЕ ВЫЙДЕШЬ'), en: () => atbash('YOU WILL NOT LEAVE') },
 };
 
+// Jealousy ladder for mentions of other girls (lines in story.react.rival, same order).
+const RIVAL_STEPS = [
+  { obs: 12, aff: -2, glitch: 0.3, red: 0, shake: 0 },
+  { obs: 18, aff: -3, glitch: 0.7, red: 0.15, shake: 0 },
+  { obs: 24, aff: -4, glitch: 1, red: 0.5, shake: 0.5 },
+  { obs: 30, aff: -5, glitch: 1.5, red: 1, shake: 1.5, music: 'yandere' },
+];
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
@@ -159,8 +166,10 @@ export class Engine {
     this.idleT = 0;
     this.renderer.bg = 'classroom';
     this.renderer.setExpression({ mood: 'normal', pose: 'idle', mouth: 'smile' });
-    this.renderer.fx.red = 0;
-    this.music('school');
+    // jealousy lingers between talks: a faint red tint after step 3, creepy music after step 4
+    const jealous = Math.min(this.state.rivals, RIVAL_STEPS.length);
+    this.renderer.fx.red = jealous >= 3 ? 0.2 * (jealous - 2) : 0;
+    this.music(jealous >= RIVAL_STEPS.length ? 'yandere' : 'school');
     this.ui.hideDialog();
     const t = this.t;
     this.ui.setHub([
@@ -237,7 +246,7 @@ export class Engine {
     this.renderer.fx.glitch = 1;
     this.renderer.fx.dim = 0;
     this.renderer.showGirl = true;
-    this.renderer.playClip('glitch_back');
+    this.renderer.playClip('gasp'); // came back from pause: shocked, facing you
     this.renderer.closeUp(true);
     this.change({ obs: 12 });
     await this.react('pause');
@@ -286,17 +295,23 @@ export class Engine {
     return this.react(r.kind === 'love' ? 'love' : `comp${Math.min(3, score)}`);
   }
 
+  // Each mention of another girl pushes her one step further: hurt -> sulky anger -> yandere smile
+  // -> screaming fit -> the yandere scene. Effects grow with every step.
   async rival() {
     const n = this.state.rivals + 1;
     this.state = { ...this.state, rivals: n };
     this.ach('rival');
-    this.audio.sfx('glitch');
-    this.renderer.fx.glitch = 1;
-    if (n >= 3) { this.change({ obs: 100 }); return; }
-    this.change({ obs: n === 1 ? 20 : 30, aff: -3 });
-    this.renderer.setExpression({ mood: 'angry' });
-    this.renderer.playClip(pick(['freakout', 'freakout_2']));
-    await this.sayLine(this.story.react.rival[Math.min(n, 2) - 1]);
+    const lines = this.story.react.rival;
+    if (n > lines.length) { this.change({ obs: 100 }); return; }
+    const step = RIVAL_STEPS[n - 1];
+    const r = this.renderer;
+    this.audio.sfx(step.glitch >= 1 ? 'glitch' : 'static');
+    r.fx.glitch = step.glitch;
+    r.fx.red = step.red;
+    r.fx.shake = step.shake;
+    if (step.music) this.music(step.music);
+    this.change({ obs: step.obs, aff: step.aff });
+    await this.sayLine(lines[n - 1]);
   }
 
   // ---------- mouse interactions (called by main) ----------
@@ -382,7 +397,7 @@ export class Engine {
 
   effect(name) {
     const r = this.renderer;
-    if (name === 'glitch') { r.fx.glitch = 1; this.audio.sfx('glitch'); if (Math.random() < 0.5) r.playClip('glitch_back'); }
+    if (name === 'glitch') { r.fx.glitch = 1; this.audio.sfx('glitch'); }
     if (name === 'shake') r.fx.shake = 1.5;
     if (name === 'red') { r.fx.red = 1; this.audio.sfx('static'); }
     if (name === 'stars') { r.burst('star', 20); this.audio.sfx('sparkle'); }

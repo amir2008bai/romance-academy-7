@@ -276,7 +276,7 @@ const SPARK_COLORS = ['#ff5fa8', '#46cbe6', '#ffe066', '#ffffff', '#ff9fcd'];
 const HEART_PX = ['.##.##.', '#######', '.#####.', '..###..', '...#...'];
 
 // episode clips the menu monitor may show when poked
-const MENU_CLIPS = ['laugh', 'gasp', 'cheeks_blush', 'shy_hands', 'cheer_eyes_shut', 'nervous', 'glitch_back'];
+const MENU_CLIPS = ['laugh', 'gasp', 'cheeks_blush', 'shy_hands', 'cheer_eyes_shut', 'nervous'];
 
 function monitorBurst(e) {
   const r = world.getBoundingClientRect();
