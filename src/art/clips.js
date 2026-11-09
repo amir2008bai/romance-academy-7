@@ -56,7 +56,7 @@ export class ClipLibrary {
   draw(ctx, t, pw, ph, sprites, zoom) {
     const { c, start } = this.active;
     if (c.sprite && sprites?.ready) {
-      sprites.drawFrame(ctx, c.img, this.frameAt(c, t - start) * c.w, t, zoom);
+      sprites.drawFrame(ctx, c.img, this.frameAt(c, t - start) * c.w, c.w, c.h, c.pad, t, zoom);
       return;
     }
     const s = Math.min((pw * 0.98) / c.w, (ph * 0.92) / c.h);
