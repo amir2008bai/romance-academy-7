@@ -8,6 +8,16 @@ const YANDERE_AT = 100;
 const IDLE_SECONDS = 75;
 const EYE_OK = 3, EYE_CREEPY = 8;
 const THIRTEEN_MINUTES = 13 * 60;
+// Episode clips (assets/clips) that may open a line of the given mood; yandere keeps the drawn creepy poses.
+const CLIP_CHANCE = 0.3;
+const MOOD_CLIPS = {
+  happy: ['laugh', 'cheer_eyes_shut', 'cheeks_blush', 'shy_hands', 'hug_books', 'face_closeup'],
+  angry: ['rage_closeup', 'freakout', 'freakout_2', 'determined'],
+  surprised: ['gasp', 'nervous'],
+  smug: ['shrug', 'shrug_2', 'side_glance'],
+  sad: ['side_glance'],
+  normal: ['side_glance', 'nervous', 'shrug'],
+};
 const DATES = [
   { id: 'rooftop', need: 15 },
   { id: 'arcade', need: 30 },
@@ -129,9 +139,17 @@ export class Engine {
     return o.go || null;
   }
 
+  // Sometimes open a line with a matching clip from the episode instead of the drawn pose.
+  moodClip(mood) {
+    const pool = MOOD_CLIPS[mood];
+    if (!pool || this.renderer.clipPlaying() || Math.random() > CLIP_CHANCE) return;
+    this.renderer.playClip(pick(pool));
+  }
+
   async sayLine(line) {
     const lang = this.getLang();
     this.renderer.setExpression(line);
+    this.moodClip(line.mood);
     const voiced = this.audio.speak(lang, line.id);
     this.renderer.pose.talking = true;
     const done = this.ui.say(lang === 'ru' ? 'Гиффани' : 'Giffany', line[lang] ?? line.ru, { mood: line.mood, blips: !voiced });
@@ -236,6 +254,7 @@ export class Engine {
     this.renderer.fx.glitch = 1;
     this.renderer.fx.dim = 0;
     this.renderer.showGirl = true;
+    this.renderer.playClip('glitch_back');
     this.renderer.closeUp(true);
     this.change({ obs: 12 });
     await this.react('pause');
@@ -258,6 +277,7 @@ export class Engine {
     if (r.kind === 'insult') {
       this.state = { ...this.state, insults: this.state.insults + 1 };
       this.change({ aff: -5, obs: 6 });
+      this.renderer.playClip('rage_closeup');
       return this.react('insult');
     }
     if (r.egg && this.story.react.eggs[r.egg]) return this.sayLine(pick(this.story.react.eggs[r.egg]));
@@ -276,8 +296,10 @@ export class Engine {
     if (this.renderer.highlights >= MAX_STARS && !this.state.flags.maxStars) {
       this.state = { ...this.state, flags: { ...this.state.flags, maxStars: true } };
       this.ach('stars7');
+      this.renderer.playClip('cheer_eyes_shut');
       return this.react('max_stars');
     }
+    if (score >= 3 || r.kind === 'love') this.renderer.playClip(pick(['cheeks_blush', 'shy_hands']));
     return this.react(r.kind === 'love' ? 'love' : `comp${Math.min(3, score)}`);
   }
 
@@ -290,6 +312,7 @@ export class Engine {
     if (n >= 3) { this.change({ obs: 100 }); return; }
     this.change({ obs: n === 1 ? 20 : 30, aff: -3 });
     this.renderer.setExpression({ mood: 'angry' });
+    this.renderer.playClip(pick(['freakout', 'freakout_2']));
     await this.sayLine(this.story.react.rival[Math.min(n, 2) - 1]);
   }
 
@@ -307,6 +330,7 @@ export class Engine {
       this.renderer.boost = Math.max(this.renderer.boost, 0.6);
       this.renderer.setExpression({ mood: 'happy', mouth: 'grin' });
       setTimeout(() => this.inHub && !this.busy && this.renderer.setExpression({ mood: 'normal', mouth: 'smile' }), 500);
+      if (this.faceClicks % 4 === 0) this.renderer.playClip('laugh');
       if (this.faceClicks === 10) { this.ach('face'); this.hubAction(() => this.react('face')); }
       return true;
     }
@@ -375,7 +399,7 @@ export class Engine {
 
   effect(name) {
     const r = this.renderer;
-    if (name === 'glitch') { r.fx.glitch = 1; this.audio.sfx('glitch'); }
+    if (name === 'glitch') { r.fx.glitch = 1; this.audio.sfx('glitch'); if (Math.random() < 0.5) r.playClip('glitch_back'); }
     if (name === 'shake') r.fx.shake = 1.5;
     if (name === 'red') { r.fx.red = 1; this.audio.sfx('static'); }
     if (name === 'stars') { r.burst('star', 20); this.audio.sfx('sparkle'); }

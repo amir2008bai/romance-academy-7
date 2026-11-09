@@ -275,6 +275,9 @@ let sparks = [];
 const SPARK_COLORS = ['#ff5fa8', '#46cbe6', '#ffe066', '#ffffff', '#ff9fcd'];
 const HEART_PX = ['.##.##.', '#######', '.#####.', '..###..', '...#...'];
 
+// episode clips the menu monitor may show when poked
+const MENU_CLIPS = ['laugh', 'gasp', 'cheeks_blush', 'shy_hands', 'cheer_eyes_shut', 'nervous', 'glitch_back'];
+
 function monitorBurst(e) {
   const r = world.getBoundingClientRect();
   const x = ((e.clientX - r.left) / r.width) * burstCanvas.width;
@@ -286,6 +289,9 @@ function monitorBurst(e) {
   }
   audio.sfx(Math.random() < 0.5 ? 'sparkle' : 'giggle');
   menuVoice();
+  if (!renderer.clipPlaying() && Math.random() < 0.5) {
+    renderer.playClip(MENU_CLIPS[Math.floor(Math.random() * MENU_CLIPS.length)]);
+  }
   renderer.boost = Math.max(renderer.boost, 2.2);
   renderer.burst('star', 10);
   renderer.fx.glitch = 0.35;

@@ -3,6 +3,7 @@
 import { Raster, View } from '../art/raster.js';
 import { drawGiffany, defaultPose } from '../art/giffany.js';
 import { SpriteGiffany } from '../art/sprites.js';
+import { ClipLibrary } from '../art/clips.js';
 
 export const W = 320, H = 240, SCALE = 2;
 const PW = W * SCALE, PH = H * SCALE;
@@ -33,10 +34,12 @@ export class ScreenRenderer {
     this.blinkLeft = 0;
     this.mouse = null;
     this.sprites = new SpriteGiffany();
+    this.clips = new ClipLibrary();
+    this.now = 0;
   }
 
   load() {
-    return Promise.all([this.sprites.load(), ...BGS.map((name) => new Promise((resolve) => {
+    return Promise.all([this.sprites.load(), this.clips.load(), ...BGS.map((name) => new Promise((resolve) => {
       const img = new Image();
       img.onload = () => { this.bgs[name] = img; resolve(); };
       img.onerror = resolve;
@@ -51,6 +54,11 @@ export class ScreenRenderer {
     // a new line/expression gets one of several drawn poses for that mood (no repeats in a row)
     if ((mood || pose) && this.sprites?.ready) this.pose.sprite = this.sprites.pick(this.pose);
   }
+
+  // Play an episode clip in place of the sprite for a moment (see src/art/clips.js).
+  playClip(name) { return this.clips.play(name, this.now); }
+
+  clipPlaying() { return this.clips.isPlaying(this.now); }
 
   closeUp(on) {
     this.zoomTarget = on ? CLOSE_ZOOM : NORMAL_ZOOM;
@@ -149,6 +157,7 @@ export class ScreenRenderer {
 
   render(t) {
     const { ctx, fx } = this;
+    this.now = t;
     ctx.save();
     ctx.setTransform(SCALE, 0, 0, SCALE, 0, 0);
     if (fx.shake > 0) {
@@ -172,6 +181,7 @@ export class ScreenRenderer {
   }
 
   drawCharacter(t) {
+    if (this.clips.isPlaying(t)) { this.clips.draw(this.ctx, t, PW, PH); return; }
     if (this.sprites?.ready) { this.sprites.draw(this.ctx, this.pose, t, this.zoom, this.ty); return; }
     const { ctx } = this;
     ctx.save();
