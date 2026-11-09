@@ -56,7 +56,15 @@ export class ScreenRenderer {
   }
 
   // Play an episode clip in place of the sprite for a moment (see src/art/clips.js).
-  playClip(name) { return this.clips.play(name, this.now); }
+  playClip(name) {
+    const ok = this.clips.play(name, this.now);
+    if (ok && this.clips.closeUp()) { // episode zoom shots: zoom in while the clip plays
+      this.closeUp(true);
+      clearTimeout(this.clipZoom);
+      this.clipZoom = setTimeout(() => this.closeUp(false), (this.clips.active.end - this.now) * 1000);
+    }
+    return ok;
+  }
 
   clipPlaying() { return this.clips.isPlaying(this.now); }
 
@@ -181,7 +189,7 @@ export class ScreenRenderer {
   }
 
   drawCharacter(t) {
-    if (this.clips.isPlaying(t)) { this.clips.draw(this.ctx, t, PW, PH); return; }
+    if (this.clips.isPlaying(t)) { this.clips.draw(this.ctx, t, PW, PH, this.sprites, this.zoom); return; }
     if (this.sprites?.ready) { this.sprites.draw(this.ctx, this.pose, t, this.zoom, this.ty); return; }
     const { ctx } = this;
     ctx.save();

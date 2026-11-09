@@ -115,6 +115,10 @@ export class ScreenUI {
   // Free text input. Resolves with the typed text.
   ask(showHint = false) {
     this.show(this.form);
+    // sit on the dialog's top edge (like the name tag) so it never covers her line
+    const onDialog = !this.dialog.classList.contains('hidden');
+    (onDialog ? this.dialog : this.root).append(this.hint);
+    this.hint.classList.toggle('on-dialog', onDialog);
     this.show(this.hint, showHint);
     this.input.value = '';
     setTimeout(() => this.input.focus(), 50);

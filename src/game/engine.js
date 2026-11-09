@@ -8,16 +8,6 @@ const YANDERE_AT = 100;
 const IDLE_SECONDS = 75;
 const EYE_OK = 3, EYE_CREEPY = 8;
 const THIRTEEN_MINUTES = 13 * 60;
-// Episode clips (assets/clips) that may open a line of the given mood; yandere keeps the drawn creepy poses.
-const CLIP_CHANCE = 0.3;
-const MOOD_CLIPS = {
-  happy: ['laugh', 'cheer_eyes_shut', 'cheeks_blush', 'shy_hands', 'hug_books', 'face_closeup'],
-  angry: ['rage_closeup', 'freakout', 'freakout_2', 'determined'],
-  surprised: ['gasp', 'nervous'],
-  smug: ['shrug', 'shrug_2', 'side_glance'],
-  sad: ['side_glance'],
-  normal: ['side_glance', 'nervous', 'shrug'],
-};
 const DATES = [
   { id: 'rooftop', need: 15 },
   { id: 'arcade', need: 30 },
@@ -114,7 +104,7 @@ export class Engine {
     if (step.zoom !== undefined) this.renderer.closeUp(step.zoom > 2);
     if (step.boost) this.renderer.boost = step.boost;
     if (step.bg) this.renderer.bg = step.bg;
-    if (step.say) { await this.sayLine({ id: step.id, ...step.say, mood: step.mood, pose: step.pose, mouth: step.mouth }); this.renderer.closeUp(false); }
+    if (step.say) { await this.sayLine({ id: step.id, ...step.say, mood: step.mood, pose: step.pose, mouth: step.mouth, clip: step.clip }); this.renderer.closeUp(false); }
     if (step.narr) { await this.ui.say('', this.L(step.narr), { narr: true, blips: false }); }
     if (step.choice) return this.runChoice(step.choice);
     if (step.ask) await this.askCompliment(true);
@@ -139,17 +129,10 @@ export class Engine {
     return o.go || null;
   }
 
-  // Sometimes open a line with a matching clip from the episode instead of the drawn pose.
-  moodClip(mood) {
-    const pool = MOOD_CLIPS[mood];
-    if (!pool || this.renderer.clipPlaying() || Math.random() > CLIP_CHANCE) return;
-    this.renderer.playClip(pick(pool));
-  }
-
   async sayLine(line) {
     const lang = this.getLang();
     this.renderer.setExpression(line);
-    this.moodClip(line.mood);
+    if (line.clip) this.renderer.playClip(line.clip); // hand-picked episode clip for this line
     const voiced = this.audio.speak(lang, line.id);
     this.renderer.pose.talking = true;
     const done = this.ui.say(lang === 'ru' ? 'Гиффани' : 'Giffany', line[lang] ?? line.ru, { mood: line.mood, blips: !voiced });

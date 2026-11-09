@@ -42,17 +42,23 @@ export class ClipLibrary {
   }
 
   frameAt(c, elapsed) {
+    // durations are per original episode frame; redrawn clips map each one to a key pose
     let ms = (elapsed * 1000) % (c.loop * 1000);
-    for (let i = 0; i < c.frames; i++) {
-      ms -= c.durations_ms[i];
-      if (ms < 0) return i;
-    }
-    return c.frames - 1;
+    let i = 0;
+    while (i < c.durations_ms.length - 1 && (ms -= c.durations_ms[i]) >= 0) i++;
+    return c.map ? c.map[i] : i;
   }
 
-  // Draw in device pixels, centred and standing on the bottom edge like the sprites.
-  draw(ctx, t, pw, ph) {
+  closeUp() { return Boolean(this.active?.c.closeUp); }
+
+  // Redrawn clips go through the sprite placement (sprites.drawFrame); episode clips are
+  // drawn in device pixels, centred and standing on the bottom edge.
+  draw(ctx, t, pw, ph, sprites, zoom) {
     const { c, start } = this.active;
+    if (c.sprite && sprites?.ready) {
+      sprites.drawFrame(ctx, c.img, this.frameAt(c, t - start) * c.w, t, zoom);
+      return;
+    }
     const s = Math.min((pw * 0.98) / c.w, (ph * 0.92) / c.h);
     const dw = Math.round(c.w * s), dh = Math.round(c.h * s);
     const i = this.frameAt(c, t - start);

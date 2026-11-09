@@ -167,6 +167,13 @@ export class SpriteGiffany {
     ctx.drawImage(this.buf, p.x, p.y, m.w * p.scale, m.h * p.scale);
   }
 
+  // Draw one frame of a redrawn clip (same crop/size as the sprites) exactly where the sprite stands.
+  drawFrame(ctx, img, sx, t, zoom) {
+    const m = this.meta, p = this.placement(zoom);
+    const bob = Math.round(Math.sin(t * 2.2) * m.px * 0.6) * p.scale;
+    ctx.drawImage(img, sx, 0, m.w, m.h, p.x, p.y + bob, m.w * p.scale, m.h * p.scale);
+  }
+
   // Copy each eye (elliptical mask) and paste it back scaled up around its centre.
   growEyes(img, inf, s, bob) {
     const { eyeRX: rx, eyeRY: ry } = this.meta;

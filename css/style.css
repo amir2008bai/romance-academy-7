@@ -180,7 +180,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .say-form input:focus { border-color: var(--yellow); box-shadow: 0 0 1.5cqw var(--yellow); }
 .say-form button { font: 2.6cqw var(--font-ui); background: var(--pink-hot); color: #fff; padding: 0 2.5cqw; border: 0.5cqw solid #fff !important; }
-.hint { position: absolute; left: 3cqw; right: 3cqw; bottom: 13cqh; font-size: 2.4cqw; color: var(--yellow); text-shadow: 0.25cqw 0.25cqw 0 #000; text-align: center; }
+.hint {
+  position: absolute; left: 50%; transform: translateX(-50%); bottom: 31cqh; max-width: 90%;
+  padding: 0.5cqh 1.6cqw; background: rgba(10, 18, 40, 0.9); border: 0.35cqw solid var(--yellow);
+  font-size: 2.2cqw; color: var(--yellow); text-align: center; white-space: nowrap; pointer-events: none;
+}
+.hint.on-dialog { left: auto; right: 2cqw; bottom: calc(100% - 1.4cqh); transform: none; max-width: 70%; white-space: normal; font-size: 1.9cqw; text-align: right; }
 .player-line {
   position: absolute; right: 3cqw; top: 9cqh; max-width: 55%;
   background: rgba(10, 18, 40, 0.85); border: 0.4cqw solid var(--yellow); padding: 0.8cqh 2cqw; font-size: 2.6cqw;
